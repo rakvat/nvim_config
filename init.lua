@@ -6,8 +6,11 @@ Plug('mileszs/ack.vim')
 Plug('~/.fzf')
 Plug('NLKNguyen/papercolor-theme')
 
+-- also run pip install pynvim if you get errors like "Failed to load python host" when closing vim
+
 -- lsp related
 Plug('neovim/nvim-lspconfig')
+Plug('nvim-lua/plenary.nvim')  -- needed by null-ls
 Plug('jose-elias-alvarez/null-ls.nvim')
 Plug('jose-elias-alvarez/nvim-lsp-ts-utils')
 
