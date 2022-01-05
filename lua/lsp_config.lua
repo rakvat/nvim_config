@@ -43,7 +43,7 @@ local on_attach = function(client, bufnr)
 end
 
 
--- needs `npm install -g typescript typescript-language-server eslint prettier`
+-- needs `npm install -g typescript typescript-language-server eslint_d prettier`
 lspconfig.tsserver.setup({
     on_attach = function(client, bufnr)
         client.resolved_capabilities.document_formatting = false
@@ -60,7 +60,7 @@ lspconfig.tsserver.setup({
       debounce_text_changes = 150,
     }
 })
--- needs `npm i -g pyright`
+-- needs `npm install -g pyright`
 lspconfig.pyright.setup{
   on_attach=on_attach,
   flags = {
@@ -78,8 +78,8 @@ lspconfig.pyright.setup{
 
 null_ls.setup({
     sources = {
-        null_ls.builtins.diagnostics.eslint,
-        null_ls.builtins.code_actions.eslint,
+        null_ls.builtins.diagnostics.eslint_d,
+        null_ls.builtins.code_actions.eslint_d,
         null_ls.builtins.formatting.prettier,
     },
     on_attach = on_attach,

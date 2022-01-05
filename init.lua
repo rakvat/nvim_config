@@ -48,8 +48,11 @@ set.list=true
 set.listchars={tab="»·", trail="·"}
 -- allow backspacing over everything in insert mode
 set.backspace={"indent","eol","start"}
--- allow mouse click
-set.mouse='a'
+-- remove trailing whitespace on save
+vim.cmd([[
+  autocmd BufWritePre * :%s/\s\+$//e
+]])
+
 
 --------- finding/searching
 set.wildmenu=true
@@ -84,19 +87,6 @@ set.showmatch=true
 set.hlsearch=true
 -- icremental search
 set.incsearch=true
-
------- Style
-vim.cmd([[
-  let g:prettier#quickfix_enabled = 0
-  let g:prettier#autoformat = 0
-  let g:prettier#config#trailing_comma = 'es5'
-  let g:prettier#config#tab_width = 4
-  let g:prettier#config#print_width = 120
-  let g:prettier#config#jsx_bracket_same_line = 'true'
-  let g:prettier#config#single_quote = 'true'
-  let g:prettier#config#bracket_spacing = 'true'
-  autocmd BufWritePre *.ts,*.tsx Prettier
-]])
 
 
 ------ lsp
