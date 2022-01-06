@@ -9,6 +9,10 @@ local buf_map = function(bufnr, mode, lhs, rhs, opts)
     })
 end
 
+-- Add additional capabilities supported by nvim-cmp
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
@@ -42,6 +46,16 @@ local on_attach = function(client, bufnr)
 
 end
 
+local cmp = require'cmp'
+cmp.setup({
+  sources = cmp.config.sources({
+    { name = 'nvim_lsp' },
+  }),
+  flags = {
+    debounce_text_changes = 150,
+  },
+})
+
 
 -- needs `npm install -g typescript typescript-language-server eslint_d prettier`
 lspconfig.tsserver.setup({
@@ -58,7 +72,8 @@ lspconfig.tsserver.setup({
     end,
     flags = {
       debounce_text_changes = 150,
-    }
+    },
+    capabilities = capabilities,
 })
 -- needs `npm install -g pyright`
 lspconfig.pyright.setup{
@@ -66,6 +81,7 @@ lspconfig.pyright.setup{
   flags = {
     debounce_text_changes = 150,
   },
+  capabilities = capabilities,
   settings = {
     python = {
       analysis = {
@@ -77,10 +93,11 @@ lspconfig.pyright.setup{
 }
 
 null_ls.setup({
-    sources = {
-        null_ls.builtins.diagnostics.eslint_d,
-        null_ls.builtins.code_actions.eslint_d,
-        null_ls.builtins.formatting.prettier,
-    },
-    on_attach = on_attach,
+  sources = {
+      null_ls.builtins.diagnostics.eslint_d,
+      null_ls.builtins.code_actions.eslint_d,
+      null_ls.builtins.formatting.prettier,
+  },
+  on_attach = on_attach,
+  capabilities = capabilities,
 })

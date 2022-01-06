@@ -14,6 +14,9 @@ Plug('nvim-lua/plenary.nvim')  -- needed by null-ls
 Plug('jose-elias-alvarez/null-ls.nvim')
 Plug('jose-elias-alvarez/nvim-lsp-ts-utils')
 
+Plug('hrsh7th/nvim-cmp') -- auto-completion
+Plug('hrsh7th/cmp-nvim-lsp') -- completion source
+
 vim.call('plug#end')
 -- call :PlugInstall
 
@@ -29,6 +32,7 @@ vim.g.nobackup=true
 vim.g.noswapfilp=true
 vim.g.backupdir="~/.vimbackup"
 vim.g.directory="~/.vimbackup"
+vim.g.completeopt = "menuone,noselect"
 
 
 --
