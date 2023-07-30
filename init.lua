@@ -16,6 +16,14 @@ Plug('jose-elias-alvarez/nvim-lsp-ts-utils')
 
 Plug('hrsh7th/nvim-cmp') -- auto-completion
 Plug('hrsh7th/cmp-nvim-lsp') -- completion source
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-cmdline'
+Plug 'github/copilot.vim'
+
+-- vsnip
+Plug 'hrsh7th/cmp-vsnip'
+Plug 'hrsh7th/vim-vsnip'
 
 vim.call('plug#end')
 -- call :PlugInstall
@@ -106,4 +114,9 @@ vim.api.nvim_set_keymap('n', '<F5>', ':checktime<CR>', {noremap = true})
 vim.api.nvim_set_keymap('n', 'Y', 'yy', {noremap = true})
 -- clear search
 vim.api.nvim_set_keymap('n', 'C-l', ':<C-u>nohlsearch<CR><C-l>', {noremap=true, silent=true})
+
+-- enable C&P (yank to system clipboard)
+vim.api.nvim_set_option("clipboard","unnamedplus")
+
+
 
